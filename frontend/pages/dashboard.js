@@ -1,87 +1,150 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { isLoggedIn, removeToken } from "../lib/auth";
-import LoggedInNavbar from "../components/LoggedInNavbar";
+// pages/dashboard.js
+// import Layout from '../components/Layout';
+// import ChatSidebar from '../components/ChatSidebar';
+// import ChatWindow from '../components/ChatWindow';
+// import { useAuth } from '../context/AuthContext';
+// import { useRouter } from 'next/router';
+// import { useEffect, useState } from 'react';
 
+// export default function Dashboard() {
+//   const { isLoggedIn, token } = useAuth(); // Need token to pass to ChatWindow maybe
+//   const router = useRouter();
+//   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+//   const [selectedChatId, setSelectedChatId] = useState(null); // State for selected chat
+//   const [refreshSidebarKey, setRefreshSidebarKey] = useState(0); // State to trigger sidebar refresh
+
+//   useEffect(() => {
+//     if (isLoggedIn === null) return;
+//     if (!isLoggedIn) {
+//       router.push('/login');
+//     } else {
+//       setIsCheckingAuth(false);
+//     }
+//   }, [isLoggedIn, router]);
+
+//   const handleSelectChat = (chatId) => {
+//     setSelectedChatId(chatId);
+//   };
+
+//   const handleNewChat = () => {
+//     setSelectedChatId(null); // Set to null for a new chat
+//   };
+
+//   // Callback function for ChatWindow to update chat ID after a new chat is created
+//   const handleChatCreated = (newChatId) => {
+//     setSelectedChatId(newChatId);
+//     // Force sidebar refresh by changing its key
+//     setRefreshSidebarKey(prevKey => prevKey + 1);
+//   };
+
+//   if (isCheckingAuth) {
+//     return (
+//       <Layout>
+//         <div className="flex-1 flex items-center justify-center">
+//           <p>Loading...</p>
+//         </div>
+//       </Layout>
+//     );
+//   }
+
+//   return (
+//     <Layout>
+//       <div className="flex-1 flex h-full overflow-hidden">
+//         {/* Pass functions and selected ID to Sidebar */}
+//         {/* Use key prop to force re-fetch when a new chat is created */}
+//         <ChatSidebar
+//           key={refreshSidebarKey}
+//           onSelectChat={handleSelectChat}
+//           onNewChat={handleNewChat}
+//           selectedChatId={selectedChatId}
+//         />
+
+//         {/* Pass selected ID and creation handler to ChatWindow */}
+//         <div className="flex-1 h-full">
+//           <ChatWindow
+//             chatId={selectedChatId}
+//             onChatCreated={handleChatCreated} // Pass the handler
+//           />
+//         </div>
+//       </div>
+//     </Layout>
+//   );
+// }
+
+
+
+
+
+// pages/dashboard.js
+import Layout from '../components/Layout';
+import ChatSidebar from '../components/ChatSidebar';
+import ChatWindow from '../components/ChatWindow';
+import { useAuth } from '../context/AuthContext';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 export default function Dashboard() {
+  // Destructure loading state from useAuth
+  const { isLoggedIn, token, loading: authLoading } = useAuth();
   const router = useRouter();
+  const [selectedChatId, setSelectedChatId] = useState(null);
+  const [refreshSidebarKey, setRefreshSidebarKey] = useState(0);
 
   useEffect(() => {
-    if (!isLoggedIn()) {
-      router.push("/login");
+    // Wait until the auth status is determined
+    if (authLoading) {
+      return; // Do nothing while loading
     }
-  }, []);
 
-  const logout = () => {
-    removeToken();
-    router.push("/login");
+    // If not loading and not logged in, redirect
+    if (!isLoggedIn) {
+      router.push('/login');
+    }
+  }, [isLoggedIn, authLoading, router]); // Add authLoading to dependencies
+
+  const handleSelectChat = (chatId) => {
+    setSelectedChatId(chatId);
   };
 
-  return (
-    <>
-          <LoggedInNavbar />
-      <div className="dashboard">
-        <div className="dashboard-container">
-          <h1 className="title">Welcome to Dashboard 🎉</h1>
-          <p className="subtitle">You are successfully logged in.</p>
-          <button onClick={logout} className="btn btn-red">
-            Logout
-          </button>
+  const handleNewChat = () => {
+    setSelectedChatId(null);
+  };
+
+  const handleChatCreated = (newChatId) => {
+    if (newChatId) { // Only select if ID is valid
+        setSelectedChatId(newChatId);
+    }
+    setRefreshSidebarKey(prevKey => prevKey + 1);
+  };
+
+  // Show a loading state while checking auth OR if not logged in yet (before redirect happens)
+  if (authLoading || !isLoggedIn) {
+    return (
+      <Layout>
+        <div className="flex-1 flex items-center justify-center">
+          <p>Loading...</p> {/* Or a spinner component */}
         </div>
+      </Layout>
+    );
+  }
 
-        <style jsx>{`
-          .dashboard {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 90vh;
-            background: #f5f5f5;
-          }
-
-          .dashboard-container {
-            background: white;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 400px;
-          }
-
-          .title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: #333;
-          }
-
-          .subtitle {
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            color: #555;
-          }
-
-          .btn {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 500;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
-            color: white;
-          }
-
-          .btn-red {
-            background: #dc2626;
-          }
-          .btn-red:hover {
-            background: #b91c1c;
-          }
-        `}</style>
+  // Render the dashboard only if loading is complete and user is logged in
+  return (
+    <Layout>
+      <div className="flex-1 flex h-full overflow-hidden">
+        <ChatSidebar
+          key={refreshSidebarKey}
+          onSelectChat={handleSelectChat}
+          onNewChat={handleNewChat}
+          selectedChatId={selectedChatId}
+        />
+        <div className="flex-1 h-full">
+          <ChatWindow
+            chatId={selectedChatId}
+            onChatCreated={handleChatCreated}
+          />
+        </div>
       </div>
-         </>
-   
+    </Layout>
   );
 }

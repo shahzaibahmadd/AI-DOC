@@ -1,104 +1,81 @@
-import { useForm } from "react-hook-form";
-import Navbar from "../components/Navbar";
-import api from "../lib/api";
-import { setToken } from "../lib/auth";
-import { useRouter } from "next/router";
+import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
+import Layout from '../components/Layout';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
-export default function Login() {
-  const { register, handleSubmit } = useForm();
+export default function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useAuth();
   const router = useRouter();
 
-  const onSubmit = async (data) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
     try {
-      const res = await api.post("/auth/login", data);
-      setToken(res.data.token);
-      router.push("/dashboard");
+      const res = await fetch(`${API_BASE}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.token) {
+        login(data.token); // Use the context to login
+      } else {
+        setError(data.message || 'Login failed.');
+      }
     } catch (err) {
-      alert(err.response?.data?.message || "Invalid credentials");
+      setError('Cannot reach server.');
     }
   };
 
   return (
-    <>
-      <Navbar />
-    <div className="page">
-      <div className="form-container">
-        <h2 className="form-title">Login</h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            {...register("email")}
-            type="email"
-            placeholder="Email"
-            className="input"
-          />
-          <input
-            {...register("password")}
-            type="password"
-            placeholder="Password"
-            className="input"
-          />
-          <button type="submit" className="btn">Login</button>
-        </form>
+    <Layout>
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div className="max-w-md w-full bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-700">
+          <h2 className="text-2xl font-bold text-white text-center mb-6">Login</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-300">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full mt-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-green-500 focus:border-green-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-300">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full mt-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-green-500 focus:border-green-500"
+              />
+            </div>
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+            <button
+              type="submit"
+              className="w-full bg-green-600 text-white py-2 rounded-md font-semibold hover:bg-green-700 transition-colors"
+            >
+              Login
+            </button>
+          </form>
+          <p className="text-center text-gray-400 text-sm mt-4">
+            Don't have an account?{' '}
+            <Link href="/register" className="text-green-400 hover:underline">
+              Register
+            </Link>
+          </p>
+        </div>
       </div>
-
-      <style jsx>{`
-        .page {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 100vh;
-          background: #f5f5f5;
-        }
-
-        .form-container {
-          background: white;
-          padding: 2rem;
-          border-radius: 10px;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-          width: 350px;
-          text-align: center;
-        }
-
-        .form-title {
-          font-size: 1.8rem;
-          font-weight: bold;
-          margin-bottom: 1.5rem;
-          color: #333;
-        }
-
-        .input {
-          width: 100%;
-          padding: 0.75rem;
-          margin-bottom: 1rem;
-          border: 1px solid #ccc;
-          border-radius: 6px;
-          font-size: 1rem;
-        }
-
-        .input:focus {
-          border-color: #0070f3;
-          outline: none;
-        }
-
-        .btn {
-          width: 100%;
-          padding: 0.75rem;
-          background: #28a745;
-          color: white;
-          border: none;
-          border-radius: 6px;
-          font-size: 1rem;
-          cursor: pointer;
-          transition: background 0.2s;
-        }
-
-        .btn:hover {
-          background: #218838;
-        }
-      `}</style>
-    </div>
-        </>
-
+    </Layout>
   );
 }

@@ -1,106 +1,91 @@
-import { useForm } from "react-hook-form";
-import api from "../lib/api";
-import { useRouter } from "next/router";
-import Navbar from "../components/Navbar";
+import { useState } from 'react';
+import Layout from '../components/Layout';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export default function Register() {
-  const { register, handleSubmit } = useForm();
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+
+export default function RegisterPage() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
 
-  const onSubmit = async (data) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
     try {
-      await api.post("/auth/register", data);
-      alert("Registration successful! Please login.");
-      router.push("/login");
+      const res = await fetch(`${API_BASE}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert('Registration successful! Please login.');
+        router.push('/login');
+      } else {
+        setError(data.message || 'Registration failed.');
+      }
     } catch (err) {
-      alert(err.response?.data?.message || "Something went wrong");
+      setError('Cannot reach server.');
     }
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="page">
-        <div className="form-container">
-          <h2 className="form-title">Register</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              {...register("name")}
-              placeholder="Name"
-              className="input"
-            />
-            <input
-              {...register("email")}
-              type="email"
-              placeholder="Email"
-              className="input"
-            />
-            <input
-              {...register("password")}
-              type="password"
-              placeholder="Password"
-              className="input"
-            />
-            <button type="submit" className="btn">Register</button>
+    <Layout>
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div className="max-w-md w-full bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-700">
+          <h2 className="text-2xl font-bold text-white text-center mb-6">Register</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-300">Name</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="w-full mt-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-green-500 focus:border-green-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-300">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full mt-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-green-500 focus:border-green-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-300">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full mt-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-green-500 focus:border-green-500"
+              />
+            </div>
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+            <button
+              type="submit"
+              className="w-full bg-green-600 text-white py-2 rounded-md font-semibold hover:bg-green-700 transition-colors"
+            >
+              Register
+            </button>
           </form>
+          <p className="text-center text-gray-400 text-sm mt-4">
+            Already have an account?{' '}
+            <Link href="/login" className="text-green-400 hover:underline">
+              Login
+            </Link>
+          </p>
         </div>
-
-        <style jsx>{`
-          .page {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 90vh;
-            background: #f5f5f5;
-          }
-
-          .form-container {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            width: 350px;
-            text-align: center;
-          }
-
-          .form-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-            color: #333;
-          }
-
-          .input {
-            width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1rem;
-          }
-
-          .input:focus {
-            border-color: #0070f3;
-            outline: none;
-          }
-
-          .btn {
-            width: 100%;
-            padding: 0.75rem;
-            background: #0070f3;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-          }
-
-          .btn:hover {
-            background: #005bb5;
-          }
-        `}</style>
       </div>
-    </>
+    </Layout>
   );
 }

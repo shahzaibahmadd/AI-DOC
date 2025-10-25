@@ -2,8 +2,8 @@ self.__BUILD_MANIFEST = {
   "/": [
     "./static/chunks/pages/index.js"
   ],
-  "/chat": [
-    "./static/chunks/pages/chat.js"
+  "/_error": [
+    "./static/chunks/pages/_error.js"
   ],
   "/dashboard": [
     "./static/chunks/pages/dashboard.js"
@@ -23,6 +23,10 @@ self.__BUILD_MANIFEST = {
     "/chat",
     "/dashboard",
     "/login",
+    "/old-dashboard",
+    "/old-index",
+    "/old-login",
+    "/old-register",
     "/oldchat",
     "/register"
   ]
