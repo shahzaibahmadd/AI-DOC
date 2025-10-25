@@ -1,0 +1,19 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/865a1_next_dist_19915344._.js",
+      "static/chunks/fyp_src_app_favicon_ico_mjs_38b3221f._.js",
+      "static/chunks/[root-of-the-server]__30070292._.css",
+      "static/chunks/fyp_src_app_layout_tsx_5658e37c._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_5ee98ae2._.js",
+      "static/chunks/865a1_next_dist_compiled_react-dom_de7d9ebf._.js",
+      "static/chunks/865a1_next_dist_compiled_next-devtools_index_29d7c58f.js",
+      "static/chunks/865a1_next_dist_compiled_cfcff456._.js",
+      "static/chunks/865a1_next_dist_client_bda6f199._.js",
+      "static/chunks/865a1_next_dist_43f5bfdf._.js",
+      "static/chunks/865a1_@swc_helpers_cjs_11060787._.js",
+      "static/chunks/fyp_a0ff3932._.js",
+      "static/chunks/turbopack-fyp_b7f85c42._.js"
+    ]
+  }
+}
