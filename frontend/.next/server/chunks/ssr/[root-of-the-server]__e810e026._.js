@@ -1,0 +1,257 @@
+module.exports = [
+"[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("react/jsx-dev-runtime", () => require("react/jsx-dev-runtime"));
+
+module.exports = mod;
+}),
+"[externals]/styled-jsx/style.js [external] (styled-jsx/style.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("styled-jsx/style.js", () => require("styled-jsx/style.js"));
+
+module.exports = mod;
+}),
+"[externals]/fs [external] (fs, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("fs", () => require("fs"));
+
+module.exports = mod;
+}),
+"[externals]/stream [external] (stream, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("stream", () => require("stream"));
+
+module.exports = mod;
+}),
+"[externals]/zlib [external] (zlib, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("zlib", () => require("zlib"));
+
+module.exports = mod;
+}),
+"[externals]/react-dom [external] (react-dom, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("react-dom", () => require("react-dom"));
+
+module.exports = mod;
+}),
+"[project]/fyp/lib/auth.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+// export const setToken = (token) => {
+//   localStorage.setItem("token", token);
+// };
+// export const getToken = () => {
+//   return localStorage.getItem("token");
+// };
+// export const removeToken = () => {
+//   localStorage.removeItem("token");
+// };
+// export const isLoggedIn = () => {
+//   return !!getToken();
+// };
+__turbopack_context__.s([
+    "getToken",
+    ()=>getToken,
+    "isLoggedIn",
+    ()=>isLoggedIn,
+    "removeToken",
+    ()=>removeToken,
+    "setToken",
+    ()=>setToken
+]);
+const setToken = (token)=>{
+    localStorage.setItem("token", token);
+};
+const getToken = ()=>{
+    return localStorage.getItem("token");
+};
+const removeToken = ()=>{
+    localStorage.removeItem("token");
+};
+const isLoggedIn = ()=>!!getToken();
+}),
+"[project]/fyp/components/LoggedInNavbar.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>LoggedInNavbar
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/styled-jsx/style.js [external] (styled-jsx/style.js, cjs)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$fyp$2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/fyp/node_modules/next/router.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$fyp$2f$lib$2f$auth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/fyp/lib/auth.js [ssr] (ecmascript)");
+;
+;
+;
+;
+function LoggedInNavbar() {
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$fyp$2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
+    const logout = ()=>{
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$fyp$2f$lib$2f$auth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["removeToken"])();
+        router.push("/login");
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("nav", {
+        className: "jsx-25d55ed785513dd0" + " " + "navbar",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                className: "jsx-25d55ed785513dd0" + " " + "navbar-left",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
+                    className: "jsx-25d55ed785513dd0" + " " + "logo",
+                    children: "AI Document Guide"
+                }, void 0, false, {
+                    fileName: "[project]/fyp/components/LoggedInNavbar.js",
+                    lineNumber: 15,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/fyp/components/LoggedInNavbar.js",
+                lineNumber: 14,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                className: "jsx-25d55ed785513dd0" + " " + "navbar-right",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
+                        href: "/dashboard",
+                        className: "jsx-25d55ed785513dd0" + " " + "nav-link",
+                        children: "Dashboard"
+                    }, void 0, false, {
+                        fileName: "[project]/fyp/components/LoggedInNavbar.js",
+                        lineNumber: 18,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
+                        href: "/chat",
+                        className: "jsx-25d55ed785513dd0" + " " + "nav-link",
+                        children: "Chat"
+                    }, void 0, false, {
+                        fileName: "[project]/fyp/components/LoggedInNavbar.js",
+                        lineNumber: 19,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                        onClick: logout,
+                        className: "jsx-25d55ed785513dd0" + " " + "btn-logout",
+                        children: "Logout"
+                    }, void 0, false, {
+                        fileName: "[project]/fyp/components/LoggedInNavbar.js",
+                        lineNumber: 20,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/fyp/components/LoggedInNavbar.js",
+                lineNumber: 17,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__["default"], {
+                id: "25d55ed785513dd0",
+                children: ".navbar.jsx-25d55ed785513dd0{color:#fff;background:#171717;justify-content:space-between;align-items:center;padding:1rem 2rem;display:flex}.logo.jsx-25d55ed785513dd0{font-size:1.5rem;font-weight:700}.navbar-right.jsx-25d55ed785513dd0{align-items:center;gap:1rem;display:flex}.nav-link.jsx-25d55ed785513dd0{color:#fff;background:#0070f3;border-radius:5px;padding:.5rem 1rem;text-decoration:none;transition:background .2s}.nav-link.jsx-25d55ed785513dd0:hover{background:#0059c1}.btn-logout.jsx-25d55ed785513dd0{cursor:pointer;color:#fff;background:#dc2626;border:none;border-radius:5px;padding:.5rem 1rem;transition:background .2s}.btn-logout.jsx-25d55ed785513dd0:hover{background:#b91c1c}"
+            }, void 0, false, void 0, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/fyp/components/LoggedInNavbar.js",
+        lineNumber: 13,
+        columnNumber: 5
+    }, this);
+}
+}),
+"[project]/fyp/pages/dashboard.js [ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>Dashboard
+]);
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/styled-jsx/style.js [external] (styled-jsx/style.js, cjs)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$fyp$2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/fyp/node_modules/next/router.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$fyp$2f$lib$2f$auth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/fyp/lib/auth.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$fyp$2f$components$2f$LoggedInNavbar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/fyp/components/LoggedInNavbar.js [ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+function Dashboard() {
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$fyp$2f$node_modules$2f$next$2f$router$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        if (!(0, __TURBOPACK__imported__module__$5b$project$5d2f$fyp$2f$lib$2f$auth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["isLoggedIn"])()) {
+            router.push("/login");
+        }
+    }, []);
+    const logout = ()=>{
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$fyp$2f$lib$2f$auth$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["removeToken"])();
+        router.push("/login");
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["Fragment"], {
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$fyp$2f$components$2f$LoggedInNavbar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+                fileName: "[project]/fyp/pages/dashboard.js",
+                lineNumber: 23,
+                columnNumber: 11
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                className: "jsx-1a3601baa754c878" + " " + "dashboard",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                        className: "jsx-1a3601baa754c878" + " " + "dashboard-container",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
+                                className: "jsx-1a3601baa754c878" + " " + "title",
+                                children: "Welcome to Dashboard 🎉"
+                            }, void 0, false, {
+                                fileName: "[project]/fyp/pages/dashboard.js",
+                                lineNumber: 26,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                                className: "jsx-1a3601baa754c878" + " " + "subtitle",
+                                children: "You are successfully logged in."
+                            }, void 0, false, {
+                                fileName: "[project]/fyp/pages/dashboard.js",
+                                lineNumber: 27,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                                onClick: logout,
+                                className: "jsx-1a3601baa754c878" + " " + "btn btn-red",
+                                children: "Logout"
+                            }, void 0, false, {
+                                fileName: "[project]/fyp/pages/dashboard.js",
+                                lineNumber: 28,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/fyp/pages/dashboard.js",
+                        lineNumber: 25,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$styled$2d$jsx$2f$style$2e$js__$5b$external$5d$__$28$styled$2d$jsx$2f$style$2e$js$2c$__cjs$29$__["default"], {
+                        id: "1a3601baa754c878",
+                        children: ".dashboard.jsx-1a3601baa754c878{background:#f5f5f5;justify-content:center;align-items:center;min-height:90vh;display:flex}.dashboard-container.jsx-1a3601baa754c878{text-align:center;background:#fff;border-radius:12px;width:400px;padding:3rem;box-shadow:0 4px 20px #0000001a}.title.jsx-1a3601baa754c878{color:#333;margin-bottom:1rem;font-size:1.8rem;font-weight:700}.subtitle.jsx-1a3601baa754c878{color:#555;margin-bottom:2rem;font-size:1rem}.btn.jsx-1a3601baa754c878{cursor:pointer;color:#fff;border:none;border-radius:6px;width:100%;padding:.75rem;font-size:1rem;font-weight:500;transition:background .2s}.btn-red.jsx-1a3601baa754c878{background:#dc2626}.btn-red.jsx-1a3601baa754c878:hover{background:#b91c1c}"
+                    }, void 0, false, void 0, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/fyp/pages/dashboard.js",
+                lineNumber: 24,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true);
+}
+}),
+"[externals]/next/dist/shared/lib/no-fallback-error.external.js [external] (next/dist/shared/lib/no-fallback-error.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/shared/lib/no-fallback-error.external.js", () => require("next/dist/shared/lib/no-fallback-error.external.js"));
+
+module.exports = mod;
+}),
+];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__e810e026._.js.map

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///D:/FYP/Fyp/fyp/pages/index.js"],"sourcesContent":["import Link from \"next/link\";\r\n\r\nexport default function Home() {\r\n  return (\r\n    <div className=\"flex flex-col items-center justify-center min-h-screen bg-gray-50\">\r\n      <h1 className=\"text-3xl font-bold mb-4\">AI Document Guide</h1>\r\n      <div className=\"space-x-4\">\r\n        <Link href=\"/register\" className=\"bg-blue-600 text-white px-4 py-2 rounded\">Register</Link>\r\n        <Link href=\"/login\" className=\"bg-green-600 text-white px-4 py-2 rounded\">Login</Link>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,qKAAC;QAAI,WAAU;;0BACb,qKAAC;gBAAG,WAAU;0BAA0B;;;;;;0BACxC,qKAAC;gBAAI,WAAU;;kCACb,qKAAC,uIAAI;wBAAC,MAAK;wBAAY,WAAU;kCAA2C;;;;;;kCAC5E,qKAAC,uIAAI;wBAAC,MAAK;wBAAS,WAAU;kCAA4C;;;;;;;;;;;;;;;;;;AAIlF","debugId":null}}]
+}
